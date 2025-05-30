@@ -13,3 +13,4 @@ E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำ
 E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Application\obj\Debug\net9.0\refint\Application.dll
 E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Application\obj\Debug\net9.0\Application.pdb
 E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Application\obj\Debug\net9.0\ref\Application.dll
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Application\obj\Debug\net9.0\Application.sourcelink.json
