@@ -13,7 +13,7 @@ public partial class CounterStock
 
     public int IngredientId { get; set; }
 
-    public int Quantity { get; set; }
+    public decimal Quantity { get; set; }
 
     public DateTime? LastUpdated { get; set; }
 

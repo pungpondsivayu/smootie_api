@@ -168,7 +168,7 @@ public partial class SmootieerpDbConText : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("last_updated");
             entity.Property(e => e.Quantity)
-                .HasColumnType("int(11)")
+                .HasPrecision(10, 2)
                 .HasColumnName("quantity");
 
             entity.HasOne(d => d.Branch).WithMany(p => p.CounterStocks)
