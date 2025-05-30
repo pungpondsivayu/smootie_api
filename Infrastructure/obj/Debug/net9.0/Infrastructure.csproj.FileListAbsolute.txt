@@ -1,0 +1,15 @@
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Infrastructure\bin\Debug\net9.0\Infrastructure.deps.json
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Infrastructure\bin\Debug\net9.0\Infrastructure.dll
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Infrastructure\bin\Debug\net9.0\Infrastructure.pdb
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Infrastructure\bin\Debug\net9.0\Domain.dll
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Infrastructure\bin\Debug\net9.0\Domain.pdb
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Infrastructure\obj\Debug\net9.0\Infrastructure.csproj.AssemblyReference.cache
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Infrastructure\obj\Debug\net9.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Infrastructure\obj\Debug\net9.0\Infrastructure.AssemblyInfoInputs.cache
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Infrastructure\obj\Debug\net9.0\Infrastructure.AssemblyInfo.cs
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Infrastructure\obj\Debug\net9.0\Infrastructure.csproj.CoreCompileInputs.cache
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Infrastructure\obj\Debug\net9.0\Infrastr.15EFFBFE.Up2Date
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Infrastructure\obj\Debug\net9.0\Infrastructure.dll
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Infrastructure\obj\Debug\net9.0\refint\Infrastructure.dll
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Infrastructure\obj\Debug\net9.0\Infrastructure.pdb
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Infrastructure\obj\Debug\net9.0\ref\Infrastructure.dll

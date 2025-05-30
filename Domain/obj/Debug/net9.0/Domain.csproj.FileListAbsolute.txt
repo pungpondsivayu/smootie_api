@@ -1,0 +1,12 @@
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Domain\bin\Debug\net9.0\Domain.deps.json
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Domain\bin\Debug\net9.0\Domain.dll
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Domain\bin\Debug\net9.0\Domain.pdb
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Domain\obj\Debug\net9.0\Domain.csproj.AssemblyReference.cache
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Domain\obj\Debug\net9.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Domain\obj\Debug\net9.0\Domain.AssemblyInfoInputs.cache
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Domain\obj\Debug\net9.0\Domain.AssemblyInfo.cs
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Domain\obj\Debug\net9.0\Domain.csproj.CoreCompileInputs.cache
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Domain\obj\Debug\net9.0\Domain.dll
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Domain\obj\Debug\net9.0\refint\Domain.dll
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Domain\obj\Debug\net9.0\Domain.pdb
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Domain\obj\Debug\net9.0\ref\Domain.dll

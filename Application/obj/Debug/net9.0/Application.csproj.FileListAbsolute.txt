@@ -1,0 +1,15 @@
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Application\bin\Debug\net9.0\Application.deps.json
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Application\bin\Debug\net9.0\Application.dll
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Application\bin\Debug\net9.0\Application.pdb
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Application\bin\Debug\net9.0\Domain.dll
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Application\bin\Debug\net9.0\Domain.pdb
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Application\obj\Debug\net9.0\Application.csproj.AssemblyReference.cache
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Application\obj\Debug\net9.0\Application.GeneratedMSBuildEditorConfig.editorconfig
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Application\obj\Debug\net9.0\Application.AssemblyInfoInputs.cache
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Application\obj\Debug\net9.0\Application.AssemblyInfo.cs
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Application\obj\Debug\net9.0\Application.csproj.CoreCompileInputs.cache
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Application\obj\Debug\net9.0\Applicat.44B5EDA2.Up2Date
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Application\obj\Debug\net9.0\Application.dll
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Application\obj\Debug\net9.0\refint\Application.dll
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Application\obj\Debug\net9.0\Application.pdb
+E:\โปรเจ็คCS66\ระบบธุรกิจร้านน้ำขนาดเล็ก\smootie_api\Application\obj\Debug\net9.0\ref\Application.dll
