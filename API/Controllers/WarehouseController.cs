@@ -24,10 +24,10 @@ namespace API.Controllers
             _warehouseService = warehouseService;
         }
 
-        [HttpGet("GetAllRole")]
-        public async Task<IActionResult> GetAllRole([Required] int pageSize = 10, [Required] int currentPage = 1 , int BranchId = 0 , string name = "")
+        [HttpGet("GetAllWarehouse")]
+        public async Task<IActionResult> GetAllWarehouse([Required] int pageSize = 10, [Required] int currentPage = 1 , int BranchId = 0)
         {
-            return await _helper.HandleRequest(() => _warehouseService.GetAllWarehouse(pageSize, currentPage , BranchId , name));
+            return await _helper.HandleRequest(() => _warehouseService.GetAllWarehouse(pageSize, currentPage , BranchId));
         }
 
         [HttpGet("GetAllTransection")]
@@ -40,6 +40,12 @@ namespace API.Controllers
         public async Task<IActionResult> CreateTransection(TransectionRequest req)
         {
             return await _helper.HandleRequest(() => _warehouseService.CreateTransection(req));
+        }
+        
+        [HttpPut("ChangeStatus")]
+        public async Task<IActionResult> ChangeStatus(int userId , int stockRequestId , string status)
+        {
+            return await _helper.HandleRequest(() => _warehouseService.ChangeStatus(userId , stockRequestId , status));
         }
     }
 }

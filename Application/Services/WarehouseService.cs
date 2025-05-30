@@ -20,7 +20,7 @@ namespace Application.Services
             _mapper = mapper;
             _service = service;
         }
-        public async Task<PaginationResponse<StockResponse>> GetAllWarehouse(int pageSize, int currentPage, int BranchId,  string name)
+        public async Task<PaginationResponse<StockResponse>> GetAllWarehouse(int pageSize, int currentPage, int BranchId)
         {
             var all = (await _service.GetService<StockItem>()
                         .GetAllWithIncludeAsync(e => e.Ingredient)).Select(e => new StockResponse
@@ -39,12 +39,6 @@ namespace Application.Services
             if (BranchId != 0)
             {
                 all = all.Where(e => e.BranchId == BranchId).ToList();
-            }
-
-            if (!string.IsNullOrEmpty(name))
-            {
-                all = all.Where(e => e.Ingredient.Name == name).ToList();
-
             }
 
             var totalCount = all.Count;
@@ -71,7 +65,7 @@ namespace Application.Services
                     EmployeeId = req.EmployeeId,
                     BranchId = req.BranchId,
                     RequestDate = DateTime.UtcNow,
-                    Status = req.Status == "request" ? string.Empty : "approved",
+                    Status = req.RequestType == "add" ? "approve" : "pending", 
                     ApprovedBy = "",
                     ApprovedDate = null,
                     RequestType = req.RequestType,
@@ -90,6 +84,14 @@ namespace Application.Services
                     await _service.GetService<StockRequestItem>().AddAsync(stockRequestItem);
                 }
 
+                if (Stock.RequestType == "add")
+                {
+                    var transection = await Transection(Stock.RequestId);
+                    if (transection.StatusCode != 200 && !transection.Success)
+                    {
+                        return new ResponseMessage(transection.StatusCode, transection.Success, transection.Message);
+                    }
+                }
                 return new ResponseMessage(200, true, "Stock created successfully");
             }
             catch (DbUpdateException dbEx)
@@ -99,6 +101,86 @@ namespace Application.Services
             catch (Exception ex)
             {
                 return new ResponseMessage(500, false, $"{ex.Message}");
+            }
+        }
+
+        public async Task<ResponseMessage> ChangeStatus(int userId, int StockRequestId , string status)
+        {
+            try
+            {
+                var request = await _service.GetService<StockRequest>().GetByIdAsync(StockRequestId);
+                if (request == null)
+                {
+                    return new ResponseMessage(404, true, "Data is NotFound");
+                }
+                request.ApprovedBy = userId.ToString();
+                request.ApprovedDate = DateTime.UtcNow; 
+                request.Status = status;
+                await _service.GetService<StockRequest>().UpdateAsync(request);
+                if (status == "approve")
+                {
+                    var transection = await Transection(request.RequestId);
+                    if (transection.StatusCode != 200 && !transection.Success)
+                    {
+                        return new ResponseMessage(transection.StatusCode, transection.Success, transection.Message);
+                    }
+                }
+                
+                return new ResponseMessage(200, true, "Approve transection successfully");
+            }
+            catch (DbUpdateException dbEx)
+            {
+                return new ResponseMessage(500, false, $"DB Error: {dbEx.InnerException?.Message ?? dbEx.Message}");
+            }
+            catch (Exception ex)
+            {
+                return new ResponseMessage(500, false, $"DB Error: {ex.Message}");  
+            }
+        }
+
+        public async Task<ResponseMessage> Transection(int StockRequestId)
+        {
+            try
+            {
+                var Request = (await _service.GetService<StockRequest>().GetAllWithIncludeAsync(e => e.StockRequestItems)).FirstOrDefault(e => e.RequestId == StockRequestId);
+                if (Request.RequestType == "request")
+                {
+                    foreach (var requestStockRequestItem in Request.StockRequestItems)
+                    {
+                        var stockItem = (await _service.GetService<StockItem>().GetAllAsync()).FirstOrDefault(e =>  e.IngredientId == requestStockRequestItem.IngredientId);
+                        stockItem.Quantity -= requestStockRequestItem.Quantity;  
+                        await _service.GetService<StockItem>().UpdateAsync(stockItem);
+                    }
+                }else if (Request.RequestType == "add")
+                {
+                    foreach (var requestStockRequestItem in Request.StockRequestItems)
+                    {
+                        StockItem stockItem; 
+                        stockItem = (await _service.GetService<StockItem>().GetAllAsync()).FirstOrDefault(e => e.IngredientId == requestStockRequestItem.IngredientId);
+                        if (stockItem != null) {
+                            stockItem.Quantity += requestStockRequestItem.Quantity;
+                            await _service.GetService<StockItem>().UpdateAsync(stockItem);
+                        }
+                        else
+                        {
+                            stockItem = new StockItem();
+                            stockItem.BranchId = Request.BranchId;
+                            stockItem.IngredientId = requestStockRequestItem.IngredientId;
+                            stockItem.Quantity = requestStockRequestItem.Quantity; 
+                            stockItem.CreatedDate = DateTime.UtcNow;
+                            await _service.GetService<StockItem>().AddAsync(stockItem);
+                        }
+                    }
+                } 
+                return new ResponseMessage(200, true , "");   
+            }
+            catch (DbUpdateException dbEx)
+            {
+                return new ResponseMessage(500, false, $"DB Error: {dbEx.InnerException?.Message ?? dbEx.Message}");
+            }
+            catch (Exception ex)
+            { 
+                return new ResponseMessage(500, false, $"{ex.Message}");    
             }
         }
 
@@ -148,7 +230,7 @@ namespace Application.Services
             }
             else if (endDate.HasValue)
             {
-                all = all.Where(e => e.RequestDate <= endDate.Value);
+                all = all.Where(e => e.RequestDate <= endDate.Value).ToList();
             }
 
             if (BranchId != 0)
