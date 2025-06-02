@@ -1,4 +1,5 @@
-﻿using API.helper;
+﻿using System.ComponentModel.DataAnnotations;
+using API.helper;
 using Application.Interfaces;
 using Application.Services;
 using Domain.CustomRequest;
@@ -22,7 +23,15 @@ namespace API.Controllers
             _service = service;
             _orderService = orderService;
         }
+        
+        [HttpGet("GetAllOrder")]
+        public async Task<IActionResult> GetAllOrder([Required] int pageSize = 10, [Required] int currentPage = 1, int BranchId = 0 , string StartDate = "", string EndDate = "")
+        {
+            var url = $"{Request.Scheme}://{Request.Host}{Request.PathBase}";
+            return await _helper.HandleRequest(() => _orderService.GetAllOrder(url ,pageSize , currentPage , BranchId , StartDate, EndDate));
+        }
 
+        
         [HttpPost("SaveOrder")]
         public async Task<IActionResult> SaveOrder(OrderRequest req)
         {

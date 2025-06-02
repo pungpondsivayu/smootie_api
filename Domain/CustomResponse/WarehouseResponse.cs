@@ -50,4 +50,20 @@
 
         public decimal? Quantity { get; set; }
     }
+
+    public class CouterStockResponse
+    {
+        public int CounterStockId { get; set; }
+
+        public int BranchId { get; set; }
+        
+        public string Name { get; set; }
+
+        public string Unit { get; set; }
+        public int IngredientId { get; set; }
+
+        public decimal Quantity { get; set; }
+
+        public DateTime? LastUpdated { get; set; }
+    }
 }

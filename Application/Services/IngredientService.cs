@@ -60,6 +60,17 @@ namespace Application.Services
             return new PaginationResponse<IngredientResponse>(paged, totalCount, currentPage, pageSize);
         }
 
+        public async Task<ResponseData> GetIngredientDropdown()
+        {
+            var result =  _service.GetService<Ingredient>().GetAll().ToList().Select(e => new DropDownResponse
+            {
+                value = e.IngredientId,
+                label = e.Name,
+            });
+            
+            return new ResponseData(200, true, ""  , result);
+        }
+
         public async Task<ResponseData> GetIngredientById(int id)
         {
             var result = _mapper.Map<Ingredient, IngredientResponse>(await _service.GetService<Ingredient>().GetByIdAsync(id));

@@ -29,6 +29,12 @@ namespace API.Controllers
         {
             return await _helper.HandleRequest(() => _ingredientService.GetAllIngredient(pageSize , currentPage));
         }
+        
+        [HttpGet("GetDropdown")]
+        public async Task<IActionResult> GetIngredientDropdown()
+        {
+            return await _helper.HandleRequest(() => _ingredientService.GetIngredientDropdown());
+        }
 
         [HttpGet("GetIngredient/{id}")]
         public async Task<IActionResult> GetIngredient(int id)

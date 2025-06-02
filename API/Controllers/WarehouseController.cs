@@ -29,12 +29,19 @@ namespace API.Controllers
         {
             return await _helper.HandleRequest(() => _warehouseService.GetAllWarehouse(pageSize, currentPage , BranchId));
         }
+        
+        [HttpGet("GetAllCouterStock")]
+        public async Task<IActionResult> GetAllCouterStock([Required] int pageSize = 10, [Required] int currentPage = 1 , int BranchId = 0)
+        {
+            return await _helper.HandleRequest(() => _warehouseService.GetAllCouterStock(pageSize, currentPage , BranchId));
+        }
 
         [HttpGet("GetAllTransection")]
         public async Task<IActionResult> GetAllRole([Required] int pageSize = 10, [Required] int currentPage = 1, int BranchId = 0, string StartDate = "", string EndDate = "", string Status = "", string RequestType = "")
         {
             return await _helper.HandleRequest(() => _warehouseService.GetAllTransection(pageSize, currentPage, BranchId, StartDate , EndDate , Status , RequestType));
         }
+        
 
         [HttpPost("CreateTransection")]
         public async Task<IActionResult> CreateTransection(TransectionRequest req)

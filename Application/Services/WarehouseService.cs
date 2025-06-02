@@ -34,7 +34,7 @@ namespace Application.Services
                                 Name = e.Ingredient.Name,
                                 Unit = e.Ingredient.Unit,
                             }
-                        }).ToList();
+                        }).OrderByDescending(e => e.Quantity).ToList();
 
             if (BranchId != 0)
             {
@@ -48,6 +48,34 @@ namespace Application.Services
                 .ToList();
 
             return new PaginationResponse<StockResponse>(paged, totalCount, currentPage, pageSize);
+        }
+
+        public async Task<PaginationResponse<CouterStockResponse>> GetAllCouterStock(int pageSize, int currentPage, int BranchId)
+        {
+            var all = (await _service.GetService<CounterStock>()
+                .GetAllWithIncludeAsync(e => e.Ingredient)).Select(e => new CouterStockResponse
+            {
+                CounterStockId = e.CounterStockId,
+                BranchId = e.BranchId,
+                Name = e.Ingredient.Name,
+                Unit = e.Ingredient.Unit,
+                Quantity = e.Quantity,
+                IngredientId = e.IngredientId,
+                LastUpdated = e.LastUpdated
+            }).OrderByDescending(e => e.Quantity).ToList();
+
+            if (BranchId != 0)
+            {
+                all = all.Where(e => e.BranchId == BranchId).ToList();
+            }
+
+            var totalCount = all.Count;
+            var paged = all
+                .Skip((currentPage - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return new PaginationResponse<CouterStockResponse>(paged, totalCount, currentPage, pageSize);
         }
 
 
@@ -142,14 +170,32 @@ namespace Application.Services
         {
             try
             {
-                var Request = (await _service.GetService<StockRequest>().GetAllWithIncludeAsync(e => e.StockRequestItems)).FirstOrDefault(e => e.RequestId == StockRequestId);
+                var Request = (await _service.GetService<StockRequest>().GetAllWithIncludeAsync(e => e.StockRequestItems)).OrderByDescending(e => e.RequestId).FirstOrDefault(e => e.RequestId == StockRequestId);
                 if (Request.RequestType == "request")
                 {
                     foreach (var requestStockRequestItem in Request.StockRequestItems)
                     {
-                        var stockItem = (await _service.GetService<StockItem>().GetAllAsync()).FirstOrDefault(e =>  e.IngredientId == requestStockRequestItem.IngredientId);
-                        stockItem.Quantity -= requestStockRequestItem.Quantity;  
+                        StockItem stockItem = (await _service.GetService<StockItem>().GetAllAsync()).FirstOrDefault(e =>
+                            e.IngredientId == requestStockRequestItem.IngredientId);
+                        stockItem.Quantity -= requestStockRequestItem.Quantity;
                         await _service.GetService<StockItem>().UpdateAsync(stockItem);
+                        
+                        CounterStock counterStock;
+                        counterStock = _service.GetService<CounterStock>().GetAll().FirstOrDefault(e => e.IngredientId == requestStockRequestItem.IngredientId);
+                        if (counterStock != null)
+                        {
+                            counterStock.Quantity += requestStockRequestItem!.Quantity ?? 0;
+                            await _service.GetService<CounterStock>().UpdateAsync(counterStock);
+                        }
+                        else
+                        {
+                            counterStock = new CounterStock();
+                            counterStock.BranchId = Request.BranchId ?? 0;
+                            counterStock.IngredientId = requestStockRequestItem!.IngredientId ?? 0;
+                            counterStock.Quantity = requestStockRequestItem!.Quantity ?? 0;
+                            counterStock.LastUpdated = DateTime.UtcNow; 
+                            await _service.GetService<CounterStock>().AddAsync(counterStock);
+                        }
                     }
                 }else if (Request.RequestType == "add")
                 {
